@@ -4,7 +4,7 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>County Pharmacy</title>
+    <title>CountyPharmacy</title>
     <link rel="stylesheet" href="index.css">
 
 
@@ -13,29 +13,19 @@
 <body>
     <div id="page">
         <header id="header">
-            <div id="headLogo">
+            <div id="header-inner">
                 <div id="logo">
-                    <img class="logo" src="images/logo/logo.jpg" alt="" srcset="">
-                </div>
-                <div id="logo">
-                    <br>
                     <h1><a href="#">County<span>Pharmacy</span></a></h1>
                 </div>
-            </div>
-            <div id="header-inner">
-                
                 <div id="top-nav">
-                    <div id="bg">
-                        
-                    </div>
                     <ul>
                         <li><a href="index.html">Home</a></li>
                         <li><a href="about.html">About</a></li>
                         <li><a href="products.html">Products/Services</a></li>
                         <li><a href="news.html">News</a></li>
                         <li><a href="contacts.php">Contact</a></li>
-                        <!-- <li><a href="users.html">Users</a></li>-->
-                        <li><a href="admin.html">Admin</a></li> 
+                        <li><a href="users.html">Users</a></li>
+                        <li><a href="admin.html">Admin</a></li>
 
                     </ul>
                 </div>
@@ -44,7 +34,7 @@
         </header>
         <div class="feature">
             <div class="feature-inner">
-                <h1>News</h1>
+                <h1>Admin Panel</h1>
             </div>
         </div>
 
@@ -54,17 +44,35 @@
 
                 <main id="contentbar">
                     <div class="article">
-                        <h3>New COVID-19 Variant Emerges</h3> In recent weeks, health authorities have identified a new COVID-19 variant, named [Variant Name]. 
-While it has caused concern, scientists and researchers are actively studying its characteristics and potential impact on transmission and vaccine efficacy.
+                        <h3>List of Users</h3>
+                        <?php 
 
-                        <h3>Vaccine Booster Shots Authorized</h3> With the ongoing effort to combat the pandemic, many countries have started authorizing and administering COVID-19 booster shots. These additional doses aim to enhance immunity and extend the protection provided by the initial vaccination.
-                        <h3>Memo nabs fast track designation for BK polyomavirus drug:</h3> Memo Therapeutics has 
-                        announced that the FDA has awarded a fast track designation for its BK polyomavirus (BKV) 
-                        drug AntiBKV (MTX-005).
+                        extract($_POST);
 
-                        <h3>Differentiating Between Cold and Flu</h3> Recognizing the symptoms of the common cold and the flu is vital. While both illnesses share some similarities, the flu tends to be more severe and may require medical attention. Understanding the differences can help you seek the right treatment.
-                        
-			<h3>Staying Healthy Through Prevention</h3> Preventing the spread of cold and flu is crucial. Practicing good hygiene, such as frequent handwashing and covering your mouth when coughing or sneezing, can help reduce the risk of infection. Additionally, maintaining a healthy lifestyle can boost your immune system.
+                        $lines = file('password.txt');
+
+                        if(!$username || !$password){
+                            echo "Blank Fields";
+                        }
+
+                        if($username == "admin" && $password == $lines[0])
+                        {
+                            $lines = file('users.txt');
+                            $count = 0;
+                            foreach($lines as $line) 
+                            {
+                                $count += 1;
+                                echo str_pad($count, 2, 0, STR_PAD_LEFT).". ".$line;
+                                echo "<br>";
+                            }
+
+                            ?><a href="download.php?path=users.txt">Download Users List</a><?php
+                        }
+                        else
+                        {
+                            echo "Invalid Credentials";
+                        }
+                        ?>
                     </div>
                 </main>
 

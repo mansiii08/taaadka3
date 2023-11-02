@@ -4,8 +4,10 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>County Pharmacy</title>
+    <title>CountyPharmacy</title>
     <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="products.css">
+
 
 
 </head>
@@ -13,31 +15,19 @@
 <body>
     <div id="page">
         <header id="header">
-            <div id="headLogo">
+            <div id="header-inner">
                 <div id="logo">
-                    <img class="logo" src="images/logo/logo.jpg"  alt="" srcset="">
-                </div>
-                <div id="logo">
-                    <br>
                     <h1><a href="#">County<span>Pharmacy</span></a></h1>
                 </div>
-            </div>
-            <div id="header-inner">
-                
                 <div id="top-nav">
-                    <div id="bg">
-                        
-                    </div>
                     <ul>
                         <li><a href="index.html">Home</a></li>
                         <li><a href="about.html">About</a></li>
                         <li><a href="products.html">Products/Services</a></li>
                         <li><a href="news.html">News</a></li>
                         <li><a href="contacts.php">Contact</a></li>
-                        <!--<li><a href="users.html">Users</a></li>
-                        
-                        <li><a href="curl.php">CURL</a></li>-->
-<li><a href="admin.html">Admin</a></li>
+                        <li><a href="users.html">Users</a></li>
+                        <li><a href="admin.html">Admin</a></li>
 
                     </ul>
                 </div>
@@ -46,29 +36,39 @@
         </header>
         <div class="feature">
             <div class="feature-inner">
-                <h1>Home</h1>
+                <h1>Products/Services</h1>
             </div>
         </div>
 
 
         <div id="content">
             <div id="content-inner">
-
+                
                 <main id="contentbar">
                     <div class="article">
-                        <div class="log-form">
-                            <h2>Enter credentials to login</h2>
-                            Default Username: admin Password:admin
-                            <form action="admin.php" method="post">
-                                <br>
-                                <input type="text" name="username" title="username" placeholder="username" />
-                                <br>
-                                <input type="password" name="password" title="username" placeholder="password" />
-                                <br>
-                                <button type="submit" class="btn">Login</button>
-                            </form>
-                        </div>
-                        <!--end log form -->
+                       <?php
+
+                        // Get the existing cookie value (if any)
+                        $cookie_value = isset($_COOKIE['last_5_pages_pharmacy']) ? $_COOKIE['last_5_pages_pharmacy'] : "";
+
+                        // Split the cookie value into an array of product IDs
+                        $product_ids = $cookie_value ? explode(",", $cookie_value) : array();
+
+                        // If there are less than 5 products, pad the array with empty strings
+                        $product_ids = array_pad($product_ids, 5, "");
+
+                        // Print out the 5 products using the product IDs
+                        echo "Last five previously visited products.";
+                        foreach ($product_ids as $product_id) {
+                            echo "<br><a href='$product_id'>$product_id</a> ";
+                        // You can add code here to fetch and display the product details from a database or API
+                        }
+
+                        ?>
+
+
+
+
                     </div>
                 </main>
 

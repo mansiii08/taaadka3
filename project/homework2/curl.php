@@ -4,7 +4,7 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>County Pharmacy</title>
+    <title>CountyPharmacy</title>
     <link rel="stylesheet" href="index.css">
 
 
@@ -13,32 +13,21 @@
 <body>
     <div id="page">
         <header id="header">
-            <div id="headLogo">
+            <div id="header-inner">
                 <div id="logo">
-                    <img class="logo" src="images/logo/logo.jpg"  alt="" srcset="">
-                </div>
-                <div id="logo">
-                    <br>
                     <h1><a href="#">County<span>Pharmacy</span></a></h1>
                 </div>
-            </div>
-            <div id="header-inner">
-                
                 <div id="top-nav">
-                    <div id="bg">
-                        
-                    </div>
                     <ul>
                         <li><a href="index.html">Home</a></li>
                         <li><a href="about.html">About</a></li>
                         <li><a href="products.html">Products/Services</a></li>
                         <li><a href="news.html">News</a></li>
                         <li><a href="contacts.php">Contact</a></li>
-                        <!-- <li><a href="users.html">Users</a></li>
-                        <li><a href="admin.html">Admin</a></li>-->
-                        <li><a href="curl.php">CURL</a></li> 
+                        <li><a href="users.html">Users</a></li>
+                        <li><a href="curl.php">CURL</a></li>
 
-
+                        <li><a href="admin.html">Admin</a></li>
                     </ul>
                 </div>
                 <div class="clr"></div>
@@ -46,7 +35,7 @@
         </header>
         <div class="feature">
             <div class="feature-inner">
-                <h1>About Us</h1>
+                <h1>CURL</h1>
             </div>
         </div>
 
@@ -56,33 +45,36 @@
 
                 <main id="contentbar">
                     <div class="article">
-	<p>
-	This is your trusted neighborhood pharmacy committed to improving your health and well-being. 
-Our dedicated team of experienced pharmacists provides personalized care, expert advice, and a wide range of healthcare services. 
-We offer a comprehensive selection of prescription and over-the-counter medications, vaccination services, medication synchronization, and health consultations to help you achieve your health goals. 
-We are deeply involved in our local community and are known for our competitive pricing, commitment to excellence, and a strong focus on patient-centered care. Your health is our priority, and we're here to be your reliable partner in health and wellness.
-	</p>                    
-</div>
+                       <?php
+                        $curl_handle = curl_init();
+                        curl_setopt($curl_handle, CURLOPT_URL, "http://rutikssangle.com/hw6/company-users.php");
+                        curl_setopt($curl_handle, CURLOPT_HEADER, 0);
+                        curl_setopt($curl_handle, CURLOPT_RETURNTRANSFER, true);
+                        $contents = curl_exec($curl_handle);
+                        curl_close($curl_handle);
+
+
+                        $users = preg_split('/<br[^>]*>/i', $contents);
+
+
+                        foreach ($users as $user) {
+                            echo "<tr>";
+                            echo "<td>";
+                            echo $user;
+                            echo "</td>";
+                            echo "</tr>";
+                            echo "</br>";
+                        }
+                        ?>
+                    </div>
                 </main>
 
-                <!-- <nav id="sidebar">
-                    <div class="widget">
-                        <h3>Left heading</h3>
-                        <ul>
-                            <li><a href="#">Link 1</a></li>
-                            <li><a href="#">Link 2</a></li>
-                            <li><a href="#">Link 3</a></li>
-                            <li><a href="#">Link 4</a></li>
-                            <li><a href="#">Link 5</a></li>
-                        </ul>
-                    </div>
-                </nav> -->
 
                 <div class="clr"></div>
             </div>
         </div>
-<!-- 
-        <div id="footerblurb">
+
+        <!-- <div id="footerblurb">
             <div id="footerblurb-inner">
 
                 <div class="column">

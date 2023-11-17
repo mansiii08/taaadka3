@@ -4,10 +4,11 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>CountyPharmacy</title>
+    <title>MARKET PLACE</title>
     <link rel="stylesheet" href="index.css">
 
 
+<?php require "dbconnect.php"; ?>
 </head>
 
 <body>
@@ -15,60 +16,59 @@
         <header id="header">
             <div id="header-inner">
                 <div id="logo">
-                    <h1><a href="#">County<span>Pharmacy</span></a></h1>
+                    <h1><a href="#">Market<span>Place</span></a></h1>
                 </div>
                 <div id="top-nav">
-                    <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="about.html">About</a></li>
-                        <li><a href="products.html">Products/Services</a></li>
-                        <li><a href="news.html">News</a></li>
-                        <li><a href="contacts.php">Contact</a></li>
-                        <li><a href="users.html">Users</a></li>
-                        <li><a href="curl.php">CURL</a></li>
-
-                        <li><a href="admin.html">Admin</a></li>
-                    </ul>
+                  
                 </div>
                 <div class="clr"></div>
             </div>
         </header>
         <div class="feature">
             <div class="feature-inner">
-                <h1>CURL</h1>
+                <h1>Top 5 Products from Pharmacy</h1>
             </div>
         </div>
 
 
         <div id="content">
             <div id="content-inner">
-
+                
                 <main id="contentbar">
                     <div class="article">
                        <?php
-                        $curl_handle = curl_init();
-                        curl_setopt($curl_handle, CURLOPT_URL, "https://taaadka3-8e1b70ea37d2.herokuapp.com/project/homework2/company-users.php");
-                        curl_setopt($curl_handle, CURLOPT_HEADER, 0);
-                        curl_setopt($curl_handle, CURLOPT_RETURNTRANSFER, true);
-                        $contents = curl_exec($curl_handle);
-                        curl_close($curl_handle);
+
+                        $sql = "SELECT * FROM product WHERE shop = 'pharmacy' ORDER BY rating DESC LIMIT 5;";
+                        $result = $conn->query($sql);
+                        $url = "http://localhost/marketplace/";
+                        $row = $result->fetch_assoc();
+                        while ($row = $result->fetch_assoc()) {
+                            echo "<br/><a href=" . $url . $row["shop"] . "/products/" . $row["id"] . ".php" . ">" . ucfirst($row["id"]) . " from " . ucfirst($row['shop']) . "</a>";
 
 
-                        $users = preg_split('/<br[^>]*>/i', $contents);
-
-
-                        foreach ($users as $user) {
-                            echo "<tr>";
-                            echo "<td>";
-                            echo $user;
-                            echo "</td>";
-                            echo "</tr>";
-                            echo "</br>";
+                            // "<br><a href='$product_id'>$product_id</a> ";
                         }
+
                         ?>
+
+
+
+
                     </div>
                 </main>
 
+                <!-- <nav id="sidebar">
+                    <div class="widget">
+                        <h3>Left heading</h3>
+                        <ul>
+                            <li><a href="#">Link 1</a></li>
+                            <li><a href="#">Link 2</a></li>
+                            <li><a href="#">Link 3</a></li>
+                            <li><a href="#">Link 4</a></li>
+                            <li><a href="#">Link 5</a></li>
+                        </ul>
+                    </div>
+                </nav> -->
 
                 <div class="clr"></div>
             </div>

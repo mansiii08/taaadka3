@@ -25,8 +25,6 @@
                         <li><a href="news.html">News</a></li>
                         <li><a href="contacts.php">Contact</a></li>
                         <li><a href="users.html">Users</a></li>
-                        <li><a href="curl.php">CURL</a></li>
-
                         <li><a href="admin.html">Admin</a></li>
                     </ul>
                 </div>
@@ -35,7 +33,8 @@
         </header>
         <div class="feature">
             <div class="feature-inner">
-                <h1>CURL</h1>
+                <h1>Users
+                </h1>
             </div>
         </div>
 
@@ -45,36 +44,54 @@
 
                 <main id="contentbar">
                     <div class="article">
-                       <?php
-                        $curl_handle = curl_init();
-                        curl_setopt($curl_handle, CURLOPT_URL, "https://taaadka3-8e1b70ea37d2.herokuapp.com/project/homework2/company-users.php");
-                        curl_setopt($curl_handle, CURLOPT_HEADER, 0);
-                        curl_setopt($curl_handle, CURLOPT_RETURNTRANSFER, true);
-                        $contents = curl_exec($curl_handle);
-                        curl_close($curl_handle);
+                        <?php require "dbconnect.php"; ?><?php
 
+                            extract($_POST);
 
-                        $users = preg_split('/<br[^>]*>/i', $contents);
+                            // Create connection
+                            $conn = new mysqli($servername, $username, $password, $dbname, 3306);
 
+                            // Check connection
+                            
+                            if ($conn->connect_error) {
+                                die("Connection failed: " . $conn->connect_error);
+                              }
 
-                        foreach ($users as $user) {
-                            echo "<tr>";
-                            echo "<td>";
-                            echo $user;
-                            echo "</td>";
-                            echo "</tr>";
-                            echo "</br>";
-                        }
-                        ?>
+                              $sql = "SELECT * FROM user where email='$email'";
+                              $result = $conn->query($sql);
+                              
+                              if ($result->num_rows > 0) {
+                                // output data of each row
+                                while($row = $result->fetch_assoc()) {
+                                    echo "Email: " . $row["email"]. " - Name: " . $row["fname"]. " " . $row["lname"]. "<br>";
+                                }
+                              } else {
+                                echo "0 results";
+                              }
+                              $conn->close();
+                            ?>
+                        <!--end log form -->
                     </div>
                 </main>
 
+                <!-- <nav id="sidebar">
+                    <div class="widget">
+                        <h3>Left heading</h3>
+                        <ul>
+                            <li><a href="#">Link 1</a></li>
+                            <li><a href="#">Link 2</a></li>
+                            <li><a href="#">Link 3</a></li>
+                            <li><a href="#">Link 4</a></li>
+                            <li><a href="#">Link 5</a></li>
+                        </ul>
+                    </div>
+                </nav> -->
 
                 <div class="clr"></div>
             </div>
         </div>
-
-        <!-- <div id="footerblurb">
+<!-- 
+        <div id="footerblurb">
             <div id="footerblurb-inner">
 
                 <div class="column">

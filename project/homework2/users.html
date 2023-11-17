@@ -15,7 +15,7 @@
         <header id="header">
             <div id="headLogo">
                 <div id="logo">
-                    <img class="logo" src="images/logo/logo.jpg"  alt="" srcset="">
+                    <img class="logo" src="images/logo/logo.jpg" alt="" srcset="">
                 </div>
                 <div id="logo">
                     <br>
@@ -23,7 +23,7 @@
                 </div>
             </div>
             <div id="header-inner">
-                
+               
                 <div id="top-nav">
                     <div id="bg">
                         
@@ -36,8 +36,7 @@
                         <li><a href="contacts.php">Contact</a></li>
                         <li><a href="users.html">Users</a></li>
                         <li><a href="admin.html">Admin</a></li>
-                        <li><a href="curl.php">CURL</a></li> 
-
+                        <li><a href="curl.php">CURL</a></li>
 
                     </ul>
                 </div>
@@ -46,7 +45,8 @@
         </header>
         <div class="feature">
             <div class="feature-inner">
-                <h1>About Us</h1>
+                <h1>Users
+                </h1>
             </div>
         </div>
 
@@ -56,13 +56,30 @@
 
                 <main id="contentbar">
                     <div class="article">
-	<p>
-	This is your trusted neighborhood pharmacy committed to improving your health and well-being. 
-Our dedicated team of experienced pharmacists provides personalized care, expert advice, and a wide range of healthcare services. 
-We offer a comprehensive selection of prescription and over-the-counter medications, vaccination services, medication synchronization, and health consultations to help you achieve your health goals. 
-We are deeply involved in our local community and are known for our competitive pricing, commitment to excellence, and a strong focus on patient-centered care. Your health is our priority, and we're here to be your reliable partner in health and wellness.
-	</p>                    
-</div>
+                        <div class="log-form">
+                            <h2>Existing User</h2>
+                            <form action="search_user.php" method="post">
+                                <input type="text" name="fname" title="fname" placeholder="Name" /></br>
+                                <input type="text" name="email" title="email" placeholder="Email" /></br>
+                                <input type="text" name="cphone" title="cphone" placeholder="Phone Number" /></br>
+                                <button type="submit" class="btn">Search User</button>
+                            </form>
+                        </div>
+
+                        <div class="log-form">
+                            <h2>Create New User</h2>
+                            <form action="create_user.php" method="post">
+                                <input type="text" name="fname" title="fname" placeholder="First Name" /></br>
+                                <input type="text" name="lname" title="lname" placeholder="Last Name" /></br>
+                                <input type="text" name="email" title="email" placeholder="Email" /></br>
+                                <input type="text" name="haddress" title="haddress" placeholder="Address" /></br>
+                                <input type="text" name="hphone" title="hphone" placeholder="Home Phone" /></br>
+                                <input type="text" name="cphone" title="cphone" placeholder="Cell Phone" /></br>
+                                <button type="submit" class="btn">Create User</button>
+                            </form>
+                        </div>
+                        <!--end log form -->
+                    </div>
                 </main>
 
                 <!-- <nav id="sidebar">
@@ -81,8 +98,8 @@ We are deeply involved in our local community and are known for our competitive 
                 <div class="clr"></div>
             </div>
         </div>
-<!-- 
-        <div id="footerblurb">
+
+        <!-- <div id="footerblurb">
             <div id="footerblurb-inner">
 
                 <div class="column">
